@@ -1,3 +1,29 @@
+<script>
+import {
+    RouterLink,
+    RouterView
+} from 'vue-router'
+import {
+    mapActions
+} from 'pinia';
+import {
+    defineStore
+} from 'pinia';
+
+export default {
+    name: 'App',
+    components: {
+        RouterView,
+        RouterLink
+    },
+    methods: {
+        ...mapActions(defineStore, ['fetchUser'])
+    },
+    async created() {
+        await this.fetchUser()
+    },
+}
+</script>
 
 <template>
 <header>
@@ -6,30 +32,15 @@
     <div class="wrapper">
 
         <nav>
-            <RouterLink to="/auth"></RouterLink>
+
+            <RouterLink to="/home"> Home</RouterLink>
+            <RouterLink to="/auth/SignUp">Registrate o inicia sesion</RouterLink>
 
         </nav>
     </div>
 </header>
-<RouterView/>
+<RouterView />
 </template>
-
-<script>
-import {
-    RouterLink,
-    RouterView
-} from 'vue-router'
-export default {
-    name: 'App',
-    components: {
-        RouterView,
-        RouterLink
-    }
-
-}
-</script>
-
-
 
 <style scoped>
 header {

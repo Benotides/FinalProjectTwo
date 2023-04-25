@@ -1,32 +1,41 @@
 import supabase from '../supabase'
+import { defineStore } from 'pinia'
 
-const user = {
-  data() {
-    return {
-      user: null,
-      error: null,
-    }
-  },
-  methods: {
+export default defineStore('userStore', {
+  state: () => ({
+      user: null
+    
+  }),
+  actions: {
+    async fetchUser() {
+      const {
+        data: { user }
+      } = await supabase.auth.getUser()
+      this.user = user
+    },
     async signIn(email, password) {
       try {
-        const { user, error } = await supabase.auth.signInWithPassword({
+        const {
+          data: { user }
+        } = await supabase.auth.signInWithPassword({
           email,
           password
         })
-        if (error) throw error
+        if (user.error) throw user.error
         this.user = user
+        this.$router.push('/home')
       } catch (error) {
         this.error = error.message
       }
     },
     async signUp(email, password) {
+      console.log(email, password)
       try {
-        const { user, error } = await supabase.auth.signUp({
+        const {data: {user} } = await supabase.auth.signUp({
           email,
           password
         })
-        if (error) throw error
+        if (user.error) throw user.error
         this.user = user
       } catch (error) {
         this.error = error.message
@@ -40,8 +49,6 @@ const user = {
       } catch (error) {
         this.error = error.message
       }
-    },
-  },
-}
-
-export default user
+    }
+  }
+})

@@ -4,32 +4,25 @@
     <input class="signin-form-input" type="password" v-model="password" placeholder="Password" />
     <button class="signin-form-button" type="submit">Sign In</button>
 </form>
+
+<RouterView/>
 </template>
 
   
 <script>
-import user from '@/stores/user'
+import defineStore from '../stores/user' //porque define store?? es por como lo he llamado en user?
+import { mapActions } from 'pinia';
 
 export default {
-    data() {
-        return {
-            email: '',
-            password: '',
-        }
-    },
-    methods: {
-        async signIn() {
-            await user.signIn(this.email, this.password)
-            if (user.error) {
-                console.log(user.error)
-            } else {
-                this.$router.push('/')
-            }
-        },
-    },
-}
-</script>
+name: 'SignIn',
+computed: {
+    ...mapActions(defineStore, ['signIn'])
+},
 
+ }
+
+
+</script>
   
 <style>
 .signin-form {

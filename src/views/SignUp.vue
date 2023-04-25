@@ -1,6 +1,7 @@
 <template>
+<RouterLink to="/auth">Vuelve a iniciar sesión</RouterLink>
 <div class="signup-container">
-    <form class="signup-form" @submit.prevent="signUp(email, password)">
+    <form class="signup-form" @submit.prevent="handleSignUp(email, password)">
         <h2>Regístrate</h2>
         <div class="input-container">
             <label for="email">Correo electrónico:</label>
@@ -12,38 +13,26 @@
         </div>
         <button type="submit" class="btn-signup">Regístrate</button>
     </form>
+
 </div>
 </template>
 
-  
 <script>
-import user from "../stores/user";
+import {mapActions} from 'pinia';
+import userStore from '@/stores/user';
 
 export default {
-    data() {
-        return {
-            email: "",
-            password: "",
-        };
-
-
-    },
-    methods: {
-    async signUp(email, password) {
-      try {
-        const { user, error } = await user.signUp(email, password);
-        if (error) throw error;
-        this.user = user;
-        this.$router.push({ name: 'home' });
-      } catch (error) {
-        this.error = error.message;
-      }
-    },
-  },
-};
+  methods: {
+    ...mapActions(userStore, ['signUp']),
+    async handleSignUp(email, password) {
+      console.log(email, password)
+      await this.signUp(email, password)
+      this.$router.push('/home')
+    }
+  }
+}
 </script>
 
-  
 <style>
 .signup-container {
     display: flex;
