@@ -1,7 +1,7 @@
 <template>
 <RouterLink to="/auth">Vuelve a iniciar sesión</RouterLink>
 <div class="signup-container">
-    <form class="signup-form" @submit.prevent="handleSignUp(email, password)">
+    <form class="signup-form" @submit.prevent="handleSignUp(email, password, confirmPassword)">
         <h2>Regístrate</h2>
         <div class="input-container">
             <label for="email">Correo electrónico:</label>
@@ -11,25 +11,39 @@
             <label for="password">Contraseña:</label>
             <input type="password" id="password" v-model="password" required />
         </div>
-        <button type="submit" class="btn-signup">Regístrate</button>
+        <div class="input-container">
+            <label for="confirmPassword">Confirmar Contraseña:</label>
+            <input type="password" id="confirmPassword" v-model="confirmPassword" required />
+        </div>
+        <div class="input-container">
+            <label for="buttonName">Nombre</label>
+            <input type="text" id="buttonName" v-model="buttonName" required />
+        </div>
+        <button type="submit" class="btn-signup">SignUp</button>
     </form>
 
 </div>
 </template>
 
 <script>
-import {mapActions} from 'pinia';
+import {
+    mapActions
+} from 'pinia';
 import userStore from '@/stores/user';
 
 export default {
-  methods: {
-    ...mapActions(userStore, ['signUp']),
-    async handleSignUp(email, password) {
-      console.log(email, password)
-      await this.signUp(email, password)
-      this.$router.push('/home')
+    methods: {
+        ...mapActions(userStore, ['signUp']),
+        async handleSignUp(email, password, confirmPassword) {
+            console.log(email, password, confirmPassword)
+            if (password !== confirmPassword) {
+                alert('Las contraseñas no coinciden');
+                return;
+            }
+            await this.signUp(email, password)
+            this.$router.push('/home')
+        }
     }
-  }
 }
 </script>
 
@@ -69,7 +83,8 @@ label {
 }
 
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+input[type="text"] {
     width: 100%;
     padding: 10px;
     border-radius: 5px;

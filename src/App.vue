@@ -9,32 +9,48 @@ import {
 import {
     defineStore
 } from 'pinia';
+import tasks from './stores/tasks';
+// import tasks from './stores/user';
+
 
 export default {
     name: 'App',
     components: {
         RouterView,
-        RouterLink
+        RouterLink,
+        
     },
     methods: {
-        ...mapActions(defineStore, ['fetchUser'])
-    },
-    async created() {
-        await this.fetchUser()
-    },
+    ...mapActions(defineStore(tasks), ['fetchUser', 'fetchAllTasks']),
+    
+  },
+  async created() {
+    await this.fetchUser()
+    await this.fetchAllTasks()
+  },
 }
 </script>
 
+
+
+
+
+
+
+
+
 <template>
 <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+    <div class="container">
+        <img class="logo" src="../src/assets/Este es el logo de Tolkien (1).jpg" alt="Logo de Tolkien">
+    </div>
 
     <div class="wrapper">
 
         <nav>
 
-            <RouterLink to="/home"> Home</RouterLink>
-            <RouterLink to="/auth/SignUp">Registrate o inicia sesion</RouterLink>
+            <RouterLink to="/home">Home</RouterLink>
+            <RouterLink to="/auth/SignUp">Registrate</RouterLink>
 
         </nav>
     </div>
@@ -43,6 +59,29 @@ export default {
 </template>
 
 <style scoped>
+body {
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 400;
+}
+
+.logo {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 50%;
+    border: 2px solid #333;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: center;
+}
+
 header {
     line-height: 1.5;
     max-height: 100vh;
@@ -78,7 +117,7 @@ nav a:first-of-type {
     border: 0;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1600px) {
     header {
         display: flex;
         place-items: center;
@@ -91,17 +130,17 @@ nav a:first-of-type {
 
     header .wrapper {
         display: flex;
-        place-items: flex-start;
+        /* place-items: flex-start; */
         flex-wrap: wrap;
     }
 
     nav {
-        text-align: left;
-        margin-left: -1rem;
+        text-align: center;
+        /* margin-left: -1rem; */
         font-size: 1rem;
 
-        padding: 1rem 0;
-        margin-top: 1rem;
+        /* padding: 1rem 0;
+        margin-top: 1rem; */
     }
 }
 </style>

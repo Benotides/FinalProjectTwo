@@ -13,7 +13,7 @@ export default defineStore('userStore', {
       } = await supabase.auth.getUser()
       this.user = user
     },
-    async signIn(email, password) {
+    async signInWithPassword(email, password) {
       try {
         const {
           data: { user }
@@ -23,7 +23,6 @@ export default defineStore('userStore', {
         })
         if (user.error) throw user.error
         this.user = user
-        this.$router.push('/home')
       } catch (error) {
         this.error = error.message
       }

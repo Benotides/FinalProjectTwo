@@ -1,5 +1,5 @@
 <template>
-<form class="signin-form" @submit.prevent="signIn">
+<form class="signin-form" @submit.prevent="handleSignIn(email, password)">
     <input class="signin-form-input" type="email" v-model="email" placeholder="Email" />
     <input class="signin-form-input" type="password" v-model="password" placeholder="Password" />
     <button class="signin-form-button" type="submit">Sign In</button>
@@ -10,18 +10,19 @@
 
   
 <script>
-import defineStore from '../stores/user' //porque define store?? es por como lo he llamado en user?
-import { mapActions } from 'pinia';
+import {mapActions} from 'pinia';
+import userStore from '@/stores/user';
 
 export default {
-name: 'SignIn',
-computed: {
-    ...mapActions(defineStore, ['signIn'])
-},
-
- }
-
-
+  methods: {
+    ...mapActions(userStore, ['signInWithPassword']),
+    async handleSignIn(email, password) {
+      console.log(email, password)
+      await this.signInWithPassword(email, password)
+      this.$router.push('/home')
+    }
+  }
+}
 </script>
   
 <style>
