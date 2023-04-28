@@ -39,7 +39,7 @@ export default defineStore('tasks', {
       console.log('New task ->', data);
       this.tasksList.push(data);
     } catch (err) {
-      console.error(err);
+      console.error(err); 
     }
   },
 

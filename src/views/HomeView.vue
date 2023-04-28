@@ -26,50 +26,36 @@
             </tr>
         </tbody>
     </table>
-    <button class=" signout" @click="handleLogout()">Log Out</button>
+    <button class=" signout" @click="_handleLogOut">Log Out</button>
 </div>
 </template>
 
 <script>
-import tasks from '../stores/tasks';
-// import userStore from '../stores/user';
-import {
-    mapActions,
-    mapState
-} from 'pinia';
+import userStore from '@/stores/user.js';
+import { mapActions, mapState } from 'pinia';
 
 export default {
-    data() {
-        return {
-            newTaskTitle: ''
-        }
+  name: 'HomeView',
+  data() {
+    return {};
+  },
+  computed: {
+    ...mapState(userStore, ['user']),
+  },
+  methods: {
+    ...mapActions(userStore, ['signOut']),
+    async _handleLogOut() {
+      try {
+        await this.signOut();
+        this.$router.push({ name: 'signIn' });
+      } catch(err) {
+        console.error(err);
+      }
     },
-    computed: {
-        ...mapState(tasks, ['tasksList'])
-    },
-    methods: {
-        ...mapActions(tasks, ['_fetchAllTasks', '_addNewTask', '_deleteTask', 'signOut']),
-        async handleLogout() {
-            await this.signOut()
-            this.$router.push({
-                name: 'signIn'
-            })
-        },
-        created() {
-            console.log('Homeview')
-            this._fetchAllTasks()
-        },
-        mounted() {
-            this._addNewTask({
-                title: '',
-                userId: ''
-            })
-            this.newTaskTitle = ''
-        },
-
-    }
-}
+  },
+};
 </script>
+
 
 <style scoped>
 table {
