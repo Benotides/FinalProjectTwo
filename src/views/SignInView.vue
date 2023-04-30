@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="container">
     <h1>Accede a tu lista de tareas</h1>
     <form class="signin-form">
         <label for="email">Email</label>
@@ -55,6 +55,7 @@ h1 {
 
   font-family: 'Aniron', sans-serif;
 }
+
 .signin-form {
     display: flex;
     flex-direction: column;

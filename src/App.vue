@@ -7,8 +7,8 @@ export default {
 <template>
 <nav>
     <RouterLink to="/">Home</RouterLink>
-    <RouterLink to="/auth/sign-in">Authentication (sign in)</RouterLink>
-    <RouterLink to="/auth/sign-up">Authentication (sign up)</RouterLink>
+    <RouterLink to="/auth/sign-in">Sign in</RouterLink>
+    <RouterLink to="/auth/sign-up">Sign up</RouterLink>
     <!-- <RouterLink to="/contact">Contact Us</RouterLink> -->
 </nav>
 <header class="container">

@@ -1,8 +1,8 @@
-import { defineStore } from 'pinia'
-import supabase from '../supabase'
+import supabase from '@/supabase/index.js';
+import { defineStore } from 'pinia';
 
-export default defineStore('tasks', {
-  state() {
+export default defineStore('taskStore', {
+  state: () => {
     return {
       tasksList: []
     }
@@ -11,16 +11,18 @@ export default defineStore('tasks', {
   actions: {
     async _fetchAllTasks() {
       try {
-        const { data, error } = await supabase.from('tasks').select()
+        const { data, error } = await supabase
+        .from('tasks')
+        .select()
 
         if (error) {
           throw error
         }
 
-        console.log(data)
-        this.tasksList = data
+        console.log(data);
+        this.tasksList = data;
       } catch (err) {
-        console.error(err)
+        console.error(err);
       }
     }
   },
@@ -29,30 +31,35 @@ export default defineStore('tasks', {
       const { data, error } = await supabase
         .from('tasks')
         .insert({ title, user_id: userId })
-        .single();
-  
+        .single()
+
       if (error) {
-        console.error(error);
-        return;
+        console.error(error)
+        return
       }
-  
-      console.log('New task ->', data);
-      this.tasksList.push(data);
+
+      console.log('New task ->', data)
+      this.tasksList.push(data)
     } catch (err) {
-      console.error(err); 
+      console.error(err)
     }
   },
 
-  async deleteTask(title, userId) {
-    const { error } = await supabase
-      .from('countries')
-      .delete({ title, user_Id: userId })
-      .eq('id', 1)
+  async _deleteTask(title, userId) {
+    const { error } = await supabase.from('tasks').delete({ title, user_Id: userId }).eq('id', 1)
 
     if (error) {
       console.error(error)
       return
     }
     console.log()
-  }
+  },
+  async _UpdateTask(title, userId) {
+    const { error } = await supabase.from('tasks').update({ title, user_Id: userId }).eq('id', 1)
+
+    if (error) {
+      console.error(error)
+      return
+    }
+  },
 })

@@ -1,3 +1,5 @@
+homeview.vue
+
 <template>
 <div>
     <h1>Lista de tareas</h1>
@@ -9,53 +11,69 @@
             </tr>
         </thead>
         <tbody>
+            <tr>
+                <td>
+                    <input type="text" v-model="newTaskTitle" placeholder="Tarea nueva" />
+                </td>
+                <td>
+                    <p v-for="todo in tasksList" :key="todo.id">{{ todo.title }}</p>
+                    <button @click.prevent="handleaddNewTask({ title: newTaskTitle, userId: 1 })">Agregar tarea</button>
+
+                </td>
+            </tr>
             <tr v-for="todo in tasksList" :key="todo.id">
                 <td>{{ todo.title }}</td>
                 <td>
-                    <button @click="showEditModal(todo)">Editar</button>
-                    <button @click="deleteTask(todo.id)">Eliminar</button>
+                    <button @click="_deleteTask(todo.id)">Eliminar</button>
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <input type="text" v-model='newTaskTitle' />
-                </td>
-                <td>
-                    <button @click="_addNewTask()">Agregar</button>
-                </td>
-            </tr>
+
         </tbody>
     </table>
-    <button class=" signout" @click="_handleLogOut">Log Out</button>
+    <logOut />
 </div>
 </template>
 
 <script>
-import userStore from '@/stores/user.js';
-import { mapActions, mapState } from 'pinia';
+import taskStore from '@/stores/tasks';
+import {
+    mapActions,
+    mapState
+} from 'pinia';
+import logOut from '../components/logOut.vue'
 
 export default {
-  name: 'HomeView',
-  data() {
-    return {};
-  },
-  computed: {
-    ...mapState(userStore, ['user']),
-  },
-  methods: {
-    ...mapActions(userStore, ['signOut']),
-    async _handleLogOut() {
-      try {
-        await this.signOut();
-        this.$router.push({ name: 'signIn' });
-      } catch(err) {
-        console.error(err);
-      }
+    name: 'HomeView',
+    components: {
+        logOut
     },
-  },
+    data() {
+        return {
+            newTaskTitle: '',
+        };
+    },
+    computed: {
+        ...mapState(taskStore, ['tasksList']),
+    },
+    methods: {
+        ...mapActions(taskStore, ['_fetchAllTasks', '_addNewTask', '_deleteTask']),
+        async handleaddNewTask() {
+            const userId = 1;
+            const newTask = {
+                title: this.newTaskTitle,
+                userId: userId
+            };
+            await this._addNewTask(newTask);
+            console.log(`Tarea agregada: ${newTask.title}`);
+            this.newTaskTitle = '';
+        },
+    },
+
+    async _deleteTask(title, userId) {
+        await this._deleteTask(title, userId);
+    },
 };
 </script>
-
 
 <style scoped>
 table {
