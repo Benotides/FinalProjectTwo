@@ -2,7 +2,7 @@
   <div class="signup-container">
     <h2 class="signup-form" h2>Accede a tu lista de tareas</h2>
     <form class="signup-form">
-      <div>
+      <div class="box">
         <label for="email">Email:</label>
         <input class="input-container" type="email" id="email" v-model="email" required />
       </div>
@@ -65,23 +65,18 @@ export default {
 };
 </script>
 
-<style>
-
+<style scoped>
 @import url('../assets/fonts.css');
-h2 {
 
-  font-family: 'Aniron', sans-serif;
-  margin-bottom: 10%;
-}
 .signup-container {
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
-  background-color: #f7f7f7;
-  padding-top:-300px ;
-
+  background-color: #f2f2f2;
+  padding-top: 30px;
+  border-radius: 8%;
+  
 }
 
 .signup-form {
@@ -91,11 +86,17 @@ h2 {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   text-align: center;
   font-family: 'Aniron', sans-serif;
+  margin-bottom: 40px;
+  
 }
 
 .signup-form h2 {
   margin-bottom: 30px;
   font-size: 2rem;
+}
+
+.box {
+  margin-bottom: 20px;
 }
 
 .input-container {
@@ -127,9 +128,7 @@ input[type='text'] {
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
-  font-size: 18px;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
+  font-size: 16px;
 }
 
 .btn-signup:hover {

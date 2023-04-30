@@ -49,11 +49,12 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 @import url('../assets/fonts.css');
 h1 {
 
   font-family: 'Aniron', sans-serif;
+  margin-top: -50%;
 }
 
 .signin-form {
