@@ -1,37 +1,30 @@
-import supabase from '@/supabase/index.js';
-import { defineStore } from 'pinia';
+import supabase from '@/supabase/index.js'
+import { defineStore } from 'pinia'
 
-export default defineStore('taskStore', {
-  state: () => {
-    return {
-      tasksList: []
-    }
-  },
+export default defineStore('taskStore2', {
+  state: () => ({
+    tasksList: []
+  }),
 
   actions: {
     async _fetchAllTasks() {
       try {
-        const { data, error } = await supabase
-        .from('tasks')
-        .select()
+        const { data, error } = await supabase.from('tasks').select()
 
         if (error) {
           throw error
         }
 
-        console.log(data);
-        this.tasksList = data;
+        console.log(data)
+        this.tasksList = data
       } catch (err) {
-        console.error(err);
+        console.error(err)
       }
     }
   },
-  async _addNewTask(title, userId) {
+  async _addNewTask({ title, user_id }) {
     try {
-      const { data, error } = await supabase
-        .from('tasks')
-        .insert({ title, user_id: userId })
-        .single()
+      const { data, error } = await supabase.from('tasks').insert({ title, user_id }).single()
 
       if (error) {
         console.error(error)
@@ -61,5 +54,5 @@ export default defineStore('taskStore', {
       console.error(error)
       return
     }
-  },
+  }
 })
