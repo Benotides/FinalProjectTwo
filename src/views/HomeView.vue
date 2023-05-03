@@ -14,16 +14,15 @@
                     <input type="text" v-model="newTaskTitle" placeholder="Tarea nueva" />
                 </td>
                 <td>
-                    <!-- <p v-for="todo in tasksList" :key="todo.id">{{ todo.title }}</p> -->
                     <button @click.prevent="_handleaddNewTask">Agregar tarea</button>
                 </td>
             </tr>
-            <!-- <tr v-for="todo in tasksList" :key="todo.id">
+            <tr v-for="todo in tasksList" :key="todo.id">
                 <td>{{ todo.title }}</td>
                 <td>
                     <button @click="_deleteTask(todo.id)">Eliminar</button>
                 </td>
-            </tr> -->
+            </tr>
         </tbody>
     </table>
     <logOut />
