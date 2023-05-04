@@ -1,73 +1,84 @@
 import supabase from '@/supabase/index.js'
 import { defineStore } from 'pinia'
 
+
 export default defineStore('taskStore', {
   state: () => ({
     tasksList: []
   }),
   actions: {
-    async _addNewTask({title, user_id}) {
-        try {
-            const { data, error } = await supabase
-            .from('tasks')
-            .insert({ title, user_id })
-            .select()
-      
-            if (error) {
-              console.error(error)
-              return
-            }
-      
-            console.log('New task ->', data[0])
-            this.tasksList.push(data[0])
-          } catch (err) {
-            console.error(err)
-          }
-    },
     async _fetchAllTasks() {
-      try {
-        const { data, error } = await supabase
+      const { data, error } = await supabase
         .from('tasks')
         .select()
-
-        if (error) {
-          throw error
+        
+      if (error) throw error;
+      console.log(data)
+      this.tasksList = data
+    },
+    async _addNewTask({ title, user_id }) {
+      const { data, error } = await supabase
+        .from('tasks')
+        .insert({ title, user_id })
+        .select();
+        if (error) throw error;
+        this.tasksList.push(...data)
+    },
+    async _editTask({ title, id }){
+      const { data, error } = await supabase
+        .from('tasks')
+        .update({ title })
+        .eq('id', id)
+        .select()
+      if (error) throw error;
+      const [task] = data;
+      this.tasksList.forEach(todo => {
+        if (todo.id === task.id) {
+          todo.title = task.title;
         }
-
-        console.log(data)
-        this.tasksList = data
+      })
+    },
+    async _completeTask(task) {
+      const { error} = await supabase
+        .from('tasks')
+        .update({ is_complete: true })
+        .eq('id', task.id);
+        if (error) throw error;
+        const index = this.tasksList.findIndex(todo => todo.id === task.id)
+        if (index !== -1) {
+          this.tasksList[index].is_complete = true;
+        }
+    },
+    async _incompleteTask({ id }) {
+      const { error } = await supabase
+        .from('tasks')
+        .update({ is_complete: false })
+        .eq('id', id);
+      if (error) throw error;
+      const index = this.tasksList.findIndex(todo => todo.id === id)
+      if (index !== -1) {
+        this.tasksList[index].is_complete = false;
+      }
+    },
+    async _eraseTask(id) {
+        const { error } = await supabase
+          .from('tasks')
+          .delete()
+          .eq('id', id)
+        if (error) throw error;
+        this.tasksList = this.tasksList.filter(task => task.id !== id);
+    },
+    async _fetchTasks() {
+      try {
+          const { data: tasks, error } = await supabase
+              .from('tasks')
+              .select()
+              .order('inserted_at', { ascending: false });
+          if (error) throw error;
+          this.tasksList = tasks;
       } catch (err) {
-        console.error(err)
+          console.error(err);
       }
-    },
-
-    async _deleteTask(title, userId) {
-      const { error } = await supabase
-      .from('tasks')
-      .delete({ title, user_Id: userId })
-      .eq('id')
-  
-      if (error) {
-        console.error(error)
-        return
-      }
-      console.log()
-    },
-
-    async _UpdateTask(title, userId) {
-      const { error } = await supabase
-      .from('tasks')
-      .update({ title, user_Id: userId }).eq('id')
-  
-      if (error) {
-        console.error(error)
-        return
-      }
-    },
-    
-
+    }
   },
 })
-
-
-//ir peganod poco a poco todo este código en el nuevo documento y luego codificar el html para que se vaya pintando mi lista de tareas en la pantalla. Luego ver tambien porque sign up ya no me funciona. 

@@ -30,6 +30,14 @@ export default {
 }
 </script>
   
-<style lang="scss" scoped>
-
+<style scoped>
+.signout {
+    margin-top: 1rem;
+    background-color: #a97f50;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
   </style>
