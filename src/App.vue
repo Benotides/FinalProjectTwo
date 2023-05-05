@@ -26,6 +26,8 @@ export default {
 body {
     font-family: 'Nunito Sans', sans-serif;
     font-weight: 400;
+    
+  
 }
 
 .logo {

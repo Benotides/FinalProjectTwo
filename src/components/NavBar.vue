@@ -9,6 +9,9 @@
 </template>
 
 <style scoped>
+
+
+
 nav {
 
     display: flex;
@@ -16,6 +19,9 @@ nav {
     background-color: #aaa;
     padding: 1rem;
     margin-bottom: 3%;
+    background-image: url('../assets/images/tw-31723.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .nav-link {
