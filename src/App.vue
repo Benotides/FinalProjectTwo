@@ -1,16 +1,18 @@
 <script>
+import NavBar from '../src/components/NavBar.vue'
 export default {
     name: "App",
+    components: {
+        NavBar,
+    },
+    data() {
+        return {}
+    },
 }
 </script>
 
 <template>
-<nav>
-    <RouterLink to="/">Home</RouterLink>
-    <RouterLink to="/auth/sign-in">Sign in</RouterLink>
-    <RouterLink to="/auth/sign-up">Sign up</RouterLink>
-    <!-- <RouterLink to="/contact">Contact Us</RouterLink> -->
-</nav>
+<NavBar />
 <header class="container">
     <img class="logo" src="../src/assets/Este es el logo de Tolkien (1).jpg" alt="Logo de Tolkien">
     <div class="wrapper">
@@ -35,7 +37,6 @@ body {
     object-position: center;
     border-radius: 50%;
     border: 2px solid #333;
-   
 }
 
 .container {
@@ -81,7 +82,36 @@ nav a:first-of-type {
     border: 0;
 }
 
-@media (min-width: 1600px) {
+/* Estilos para pantalla de tablet */
+@media screen and (max-width: 991px) {
+    .logo {
+        width: 200px;
+        height: 200px;
+    }
+
+    nav {
+        font-size: 10px;
+    }
+}
+
+/* Estilos para pantalla de móvil */
+@media screen and (max-width: 767px) {
+    .logo {
+        width: 150px;
+        height: 150px;
+    }
+
+    nav {
+        font-size: 8px;
+    }
+
+    nav a {
+        padding: 0 0.5rem;
+    }
+}
+
+/* Estilos para pantalla de PC */
+@media screen and (min-width: 1600px) {
     header {
         display: flex;
         place-items: center;

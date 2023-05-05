@@ -1,7 +1,79 @@
+<template>
+<div class="box">
+    <div class="Lista">
+        <div v-if="!updatingTask">
+            <input class="add" type="text" v-model="newTaskTitle">
+            <button class="añadir" @click="_handleaddNewTask">Añadir tarea</button>
+        </div>
+        <div v-else>
+            <input type="text" v-model="updateTaskTitle">
+            <button @click="_handleUpdateTask">Actualizar Tarea</button>
+        </div>
+        <h1>Lista de tareas pendientes</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th class="tableActions">To do!</th>
+
+                    <th class="tableActions">Estado</th>
+                    <th class="tableActions">Acciones</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <!-- <tr v-for="todo in filteredTaskList" :key="todo.id">
+                </tr> -->
+
+                <tr class="tareasnuevas" v-for="todo in uncompletedTaskList" :key="todo.id">
+                    <td>{{ todo.title }}</td>
+                    <td>&#x274C;</td>
+
+                    <td class="acciones">
+                        <button @click="_handleCompleteTask(todo)">Tarea completada!</button>
+                        <button @click="_handleEditTask(todo)">Modificar</button>
+                        <button @click="_handleEraseTask(todo)">Borrar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <h1>Listado de tareas realizadas</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th class="tableActions">Tareas completadas</th>
+                        <th class="tableActions">Estado</th>
+                        <th class="tableActions">Acciones</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="tareasnuevas" v-for="todo in completedTaskList" :key="todo.id">
+                        <td>{{ todo.title }}</td>
+                        <td>
+                            <span style="color: green; font-size: 1.2em;">&#10004;</span>
+                        </td>
+
+                        <td class="acciones">
+                            <button @click="_handleEraseTask(todo)">Borrar</button>
+                            <button @click="_handleIncompleteTask(todo)">No completada</button>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</template>
+
 <script>
-import { mapState, mapActions } from 'pinia';
-import TodoStore from '@/stores/tasks.js';
-import UserStore from '@/stores/user.js';
+import {
+    mapState,
+    mapActions
+} from 'pinia';
+import taskStore from '@/stores/taskStore.js';
+import userStore from '@/stores/user.js';
 export default {
     name: 'MyTable',
     data() {
@@ -12,20 +84,27 @@ export default {
         }
     },
     computed: {
-        ...mapState(TodoStore, ['tasksList']),
-        ...mapState(UserStore, ['user']),
+        ...mapState(taskStore, ['tasksList']),
+        ...mapState(userStore, ['user']),
+        // filteredTaskList() {
+        // return this.tasksList.filter(todo => todo.user_id === this.UserId);
+        //  },
         completedTaskList() {
             return this.tasksList.filter(task => task.is_complete);
         },
         uncompletedTaskList() {
             return this.tasksList.filter(task => !task.is_complete);
         },
+
     },
     methods: {
-        ...mapActions(TodoStore, ['_fetchAllTasks', '_addNewTask', '_editTask', '_completeTask', '_incompleteTask', '_eraseTask', '_fetchTasks']),
-        async _handleNewTask() {
+        ...mapActions(taskStore, ['_fetchAllTasks', '_addNewTask', '_editTask', '_completeTask', '_incompleteTask', '_eraseTask', '_fetchTasks']),
+        async _handleaddNewTask() {
             try {
-                await this._addNewTask({ title: this.newTaskTitle, user_id: this.user.id })
+                await this._addNewTask({
+                    title: this.newTaskTitle,
+                    user_id: this.user.id
+                })
                 this.newTaskTitle = ''
             } catch (err) {
                 console.error(err)
@@ -37,7 +116,10 @@ export default {
         },
         async _handleUpdateTask() {
             try {
-                await this._editTask({ title: this.updateTaskTitle, id: this.updatingTask.id })
+                await this._editTask({
+                    title: this.updateTaskTitle,
+                    id: this.updatingTask.id
+                })
                 this.updatingTask = null;
                 this.updateTaskTitle = '';
             } catch (err) {
@@ -46,7 +128,9 @@ export default {
         },
         async _handleCompleteTask(todo) {
             try {
-                await this._completeTask({ id: todo.id })
+                await this._completeTask({
+                    id: todo.id
+                })
                 todo.is_complete = true;
             } catch (err) {
                 console.error(err)
@@ -54,7 +138,9 @@ export default {
         },
         async _handleIncompleteTask(todo) {
             try {
-                await this._incompleteTask({ id: todo.id })
+                await this._incompleteTask({
+                    id: todo.id
+                })
             } catch (err) {
                 console.error(err)
             }
@@ -73,69 +159,173 @@ export default {
 }
 </script>
 
-<template>
-    <div class="box">
-        <div class="Lista">
-            <div v-if="!updatingTask">
-                <input class="add" type="text" v-model="newTaskTitle">
-                <button class="añadir" @click="_handleaddNewTask">Añadir tarea</button>
-            </div>
-            <div v-else>
-                <input type="text" v-model="updateTaskTitle">
-                <button @click="_handleUpdateTask">Actualizar Tarea</button>
-            </div>
-            <h1>Lista de tareas</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th class="tableActions">To do!</th>
+<style scoped>
+@import url('../assets/fonts.css');
+
+.box {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.add {
+    margin-left: 20%;
+}
+
+.lista {
+    justify-content: center;
+}
+
+h1 {
+    font-family: 'Aniron', sans-serif;
+    font-size: 20px;
+    margin-top: 3%;
+}
+
+table {
+    border-collapse: collapse;
+    margin-top: 1%;
+    margin-bottom: 4%;
+    width: 100%;
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.tableActions {
+    font-family: 'Aniron', sans-serif;
+}
+
+thead tr {
+    background-color: #aaa;
+    color: white;
+    font-weight: bold;
+}
+
+thead th,
+tbody td {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    text-align: center;
+}
+.tareasnuevas {
+    font-size: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+thead th:first-child,
+tbody td:first-child {
+    border-left: none;
+}
+
+thead th:last-child,
+tbody td:last-child {
+    border-right: none;
+}
+
+.acciones {
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    margin-top: 1rem;
+    background-color: #a97f50;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 10px;
+    width: 45%;
+    align-self: center;
+    font-family: 'Aniron', sans-serif;
+    font-size: 10px;
+}
+
+.añadir {
+    margin-top: 1rem;
+    background-color: #a97f50;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 10px;
+    width: 15%;
+    align-self: center;
+}
+
+input[type="text"] {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 1rem;
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Responsive para dispositivos móviles */
+@media (max-width: 480px) {
+    .box {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .add {
+        margin-left: 10%;
+    }
+
+    .lista {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    button {
+        width: 100%;
+    }
+    .tareasnuevas {
+    font-size: 15px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+
+    .añadir {
+        width: 30%;
+    }
+
+    input[type="text"] {
+        max-width: 100%;
+    }
     
-                        <th class="tableActions">Estado</th>
-                        <th class="tableActions">Acciones</th>
-    
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="todo in uncompletedTaskList" :key="todo.id">
-                        <td>{{ todo.title }}</td>
-                        <td>&#x274C;</td>
-    
-                        <td class="acciones">
-                            <button @click="_handleCompleteTask(todo)">Tarea completada!</button>
-                            <button @click="_handleEditTask(todo)">Modificar</button>
-                            <button @click="_handleEraseTask(todo)">Borrar</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div>
-                <h1>Listado de tareas realizadas</h1>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Tareas completadas</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
-    
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="todo in completedTaskList" :key="todo.id">
-                            <td>{{ todo.title }}</td>
-                            <td>
-                                <span style="color: green; font-size: 1.2em;">&#10004;</span>
-                            </td>
-    
-                            <td class="acciones">
-                                <button @click="_handleEraseTask(todo)">Borrar</button>
-                                <button @click="_handleIncompleteTask(todo)">No completada</button>
-    
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <logOut />
-        </div>
-    </div>
-    </template>
+}
+
+/* Responsive para tablets */
+@media (min-width: 481px) and (max-width: 1023px) {
+    .box {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    .add {
+        margin-left: 15%;
+    }
+
+    .lista {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    .añadir {
+        width: 20%;
+    }
+    .tareasnuevas {
+    font-size: 25px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+}
+
+/* Responsive para PC */
+</style>
