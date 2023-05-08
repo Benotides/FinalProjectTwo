@@ -19,7 +19,7 @@ nav {
     background-color: #aaa;
     padding: 1rem;
     margin-bottom: 3%;
-    background-image: url('../assets/images/tw-31723.jpg');
+    background-image: url('../assets/fondonav.jpg');
   background-size: cover;
   background-repeat: no-repeat;
 }
