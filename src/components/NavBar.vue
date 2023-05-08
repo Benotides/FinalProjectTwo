@@ -13,11 +13,12 @@ nav {
   display: flex;
   justify-content: center;
   background-color: #aaa;
-  padding: 1rem;
+  /* padding: 1rem; */
   margin-bottom: 3%;
   background-image: url('../assets/fondonav.jpg');
   background-size: cover;
   background-repeat: no-repeat;
+  width: 100%;
 }
 
 .nav-link {
