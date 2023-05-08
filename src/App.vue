@@ -29,13 +29,16 @@ body {
 .logo {
   display: block;
   margin: 0 auto;
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
   object-fit: contain;
   object-position: center;
-  border-radius: 50%;
-  border: 2px solid #333;
+  border-radius: 100%;
+  display: block;
+  margin: 0 auto 2rem;
+
 }
+
 
 .container {
   display: flex;
@@ -49,36 +52,7 @@ header {
   max-height: 100vh;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-  padding-bottom: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
 
 /* Estilos para pantalla de tablet */
 @media screen and (max-width: 991px) {
@@ -87,9 +61,7 @@ nav a:first-of-type {
     height: 200px;
   }
 
-  nav {
-    font-size: 10px;
-  }
+
 }
 
 /* Estilos para pantalla de móvil */
@@ -99,13 +71,6 @@ nav a:first-of-type {
     height: 150px;
   }
 
-  nav {
-    font-size: 8px;
-  }
-
-  nav a {
-    padding: 0 0.5rem;
-  }
 }
 
 /* Estilos para pantalla de PC */
@@ -126,13 +91,6 @@ nav a:first-of-type {
     flex-wrap: wrap;
   }
 
-  nav {
-    text-align: center;
-    /* margin-left: -1rem; */
-    font-size: 1rem;
 
-    /* padding: 1rem 0;
-        margin-top: 1rem; */
-  }
 }
 </style>

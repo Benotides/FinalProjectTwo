@@ -13,7 +13,7 @@ nav {
   display: flex;
   justify-content: center;
   background-color: #aaa;
-  /* padding: 1rem; */
+  padding: 1rem;
   margin-bottom: 3%;
   background-image: url('../assets/fondonav.jpg');
   background-size: cover;
@@ -24,7 +24,7 @@ nav {
 .nav-link {
   font-family: 'Aniron', sans-serif;
 
-  color: white;
+  color: bisque;
   text-decoration: none;
   margin: 0 2rem;
   font-size: 1.2rem;
