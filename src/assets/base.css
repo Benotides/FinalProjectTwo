@@ -1,5 +1,3 @@
-
-
 *,
 *::before,
 *::after {
@@ -17,4 +15,8 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url('../assets/images/Ilustracion-de-La-comunidad-del-anillo-primera-pelicula-de-la-trilogia-de-El-Senor-de-los.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  
 }

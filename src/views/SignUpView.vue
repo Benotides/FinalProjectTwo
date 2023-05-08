@@ -55,7 +55,7 @@ export default {
         await this.registerUser(userData.email, userData.password);
         console.log(this.user)
         this.$router.push({
-          name: 'home'
+          name: 'signIn',
         })
       } catch (err) {
         console.error(err)
