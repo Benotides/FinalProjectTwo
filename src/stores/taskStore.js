@@ -68,17 +68,26 @@ export default defineStore('taskStore', {
         if (error) throw error;
         this.tasksList = this.tasksList.filter(task => task.id !== id);
     },
-    async _fetchTasks() {
-      try {
-          const { data: tasks, error } = await supabase
-              .from('tasks')
-              .select()
-              .order('inserted_at', { ascending: false });
-          if (error) throw error;
-          this.tasksList = tasks;
-      } catch (err) {
-          console.error(err);
-      }
+    // async _fetchTasks() {
+    //   try {
+    //       const { data: tasks, error } = await supabase
+    //           .from('tasks')
+    //           .select()
+    //           .order('inserted_at', { ascending: false });
+    //       if (error) throw error;
+    //       this.tasksList = tasks;
+    //   } catch (err) {
+    //       console.error(err);
+    //   }
+    // }
+
+    async fetchTasks () {
+      const { data: tasks } = await supabase
+        .from('tasks')
+        .select('*')
+        .order('id', { ascending: false });
+      this.tasks = tasks;
     }
-  },
-})
+  }
+});
+ 
