@@ -121,7 +121,8 @@ input[type='text'] {
 }
 
 .btn-signup {
-  background-color: #0077c2;
+  font-family: 'Aniron', sans-serif;
+  background-color: darkslategrey;
   color: #fff;
   border: none;
   border-radius: 5px;

@@ -54,7 +54,10 @@ h1 {
   font-family: 'Aniron', sans-serif;
   margin-top: -50%;
 }
-
+label {
+  color:bisque;
+  margin-bottom: 3%;
+}
 .signin-form {
   display: flex;
   flex-direction: column;
@@ -71,10 +74,14 @@ h1 {
   border: 1px solid #ccc;
   font-size: 16px;
 }
+button {
+  font-family: 'Aniron', sans-serif;
+  background-color: darkslategrey;
+}
 
 .signin-form-button {
-  background-color: #0077c2;
-  color: #fff;
+  background-color: darkslategrey;
+  color:bisque;
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
