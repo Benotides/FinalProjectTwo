@@ -14,7 +14,7 @@ export default {
 <template>
 <NavBar />
 <header class="container">
-    <img class="logo" src="../src/assets/Este es el logo de Tolkien (1).jpg" alt="Logo de Tolkien">
+    <img class="logo" src="../src/assets/images/Este es el logo de Tolkien .jpeg" alt="Logo de Tolkien">
     <div class="wrapper">
 
     </div>

@@ -35,5 +35,15 @@ export default defineStore('userStore', {
             if (error) throw error;
             this.user = null;
         },
+        persist: {
+            enabled: true,
+            strategies: [
+              {
+                key: 'user',
+                storage: 'supabase',
+              }
+            ]
+          },
+        
     },
 })
