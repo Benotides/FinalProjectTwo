@@ -26,8 +26,8 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'pinia';
-import userStore from '@/stores/user.js';
+import { mapState, mapActions } from 'pinia'
+import userStore from '@/stores/user.js'
 
 export default {
   name: 'SignUpView',
@@ -35,34 +35,34 @@ export default {
     return {
       email: '',
       password: '',
-      confirmPassword: '',
+      confirmPassword: ''
     }
   },
   computed: {
-    ...mapState(userStore, ['user']),
+    ...mapState(userStore, ['user'])
   },
   methods: {
     ...mapActions(userStore, ['registerUser']),
     async handleSignUp() {
       try {
         if (this.password !== this.confirmPassword) {
-          throw new Error('Las contraseñas no coinciden');
+          throw new Error('Las contraseñas no coinciden')
         }
         const userData = {
           email: this.email,
-          password: this.password,
+          password: this.password
         }
-        await this.registerUser(userData.email, userData.password);
+        await this.registerUser(userData.email, userData.password)
         console.log(this.user)
         this.$router.push({
-          name: 'signIn',
+          name: 'signIn'
         })
       } catch (err) {
         console.error(err)
       }
     }
   }
-};
+}
 </script>
 
 <style scoped>
@@ -76,7 +76,6 @@ export default {
   background-color: #f2f2f2;
   padding-top: 30px;
   border-radius: 8%;
-  
 }
 
 .signup-form {
@@ -87,7 +86,6 @@ export default {
   text-align: center;
   font-family: 'Aniron', sans-serif;
   margin-bottom: 40px;
-  
 }
 
 .signup-form h2 {
