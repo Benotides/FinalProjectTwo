@@ -1,47 +1,39 @@
-import supabase from '../supabase'
+import { defineStore } from 'pinia';
+import supabase from '@/supabase/index.js';
 
-const user = {
-  data() {
-    return {
-      user: null,
-      error: null,
-    }
-  },
-  methods: {
-    async signIn(email, password) {
-      try {
-        const { user, error } = await supabase.auth.signInWithPassword({
-          email,
-          password
-        })
-        if (error) throw error
-        this.user = user
-      } catch (error) {
-        this.error = error.message
-      }
-    },
-    async signUp(email, password) {
-      try {
-        const { user, error } = await supabase.auth.signUp({
-          email,
-          password
-        })
-        if (error) throw error
-        this.user = user
-      } catch (error) {
-        this.error = error.message
-      }
-    },
-    async signOut() {
-      try {
-        const { error } = await supabase.auth.signOut()
-        if (error) throw error
-        this.user = null
-      } catch (error) {
-        this.error = error.message
-      }
-    },
-  },
-}
 
-export default user
+export default defineStore('userStore', {
+    state: () => ({
+        user: undefined,
+    }),
+    actions: {
+        // para saber si tenemos un usuario que haya iniciado sesión //
+        async fetchUser() {
+            const { data: { user } } = await supabase.auth.getUser()
+            this.user = user;
+        },
+        //método de crear un nuevo usuario que lo tomo de la doc de SupaBase
+        async registerUser( email, password ) {
+            const { data: { user }, error } = await supabase.auth.signUp({
+                email: email,
+                password: password,
+          });
+          if (error) throw error;
+          if (user) this.user = user;
+        },
+        //método de iniciar sesión que lo tomo de la doc de SupaBase
+        async signIn( {email, password}) {
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email,
+                password,
+              });
+              if (error) throw error;
+              if (data) this.user = data;
+        },
+        async signOut() {
+            const { error } = await supabase.auth.signOut();
+            if (error) throw error;
+            this.user = null;
+        },
+    },
+})
