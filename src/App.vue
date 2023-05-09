@@ -68,6 +68,19 @@ header {
     height: 150px;
   }
 
+  
+
+}
+
+@media screen and (max-width: 480px) {
+  .logo {
+    width: 210px;
+    height: 210px;
+    margin-top: 5%;
+  }
+
+  
+
 }
 
 /* Estilos para pantalla de PC */

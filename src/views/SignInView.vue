@@ -120,8 +120,9 @@ button {
 }
 @media screen and (max-width: 480px) {
 h1 {
-  font-size: 20px;
+  font-size: 28px;
   text-align: center;
+
 }
 }
 </style>
