@@ -42,6 +42,7 @@ router.beforeEach(async (to) => {
   await store.fetchUser()
   const { user } = store
   console.log(user)
+  console.log(name)
   if (meta.requiresAuth && user === null) {
     return { name: 'signIn' }
   }

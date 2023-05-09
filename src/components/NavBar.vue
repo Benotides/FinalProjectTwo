@@ -13,12 +13,12 @@ nav {
   display: flex;
   justify-content: center;
   background-color: #aaa;
-  padding: 1rem;
+  padding: 1.5rem;
   margin-bottom: 3%;
   background-image: url('../assets/fondonav.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-  width: 100%;
+  width: auto;
 }
 
 .nav-link {
@@ -26,7 +26,7 @@ nav {
 
   color: bisque;
   text-decoration: none;
-  margin: 0 2rem;
+  margin: 0 4rem;
   font-size: 1.2rem;
 }
 
@@ -37,6 +37,18 @@ nav {
 @media screen and (max-width: 768px) {
   nav {
     flex-direction: column;
+    display: flex;
+  justify-content: center;
+  background-color: #aaa;
+  padding: 1rem;
+  margin-bottom: 3%;
+  background-image: url('../assets/fondonav.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: auto;
   }
+
 }
+ 
+
 </style>
