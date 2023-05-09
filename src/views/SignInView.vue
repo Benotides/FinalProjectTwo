@@ -101,6 +101,10 @@ button {
   .signin-form-input {
     width: 250px;
   }
+  h1 {
+  font-size: 30px;
+  text-align: center;
+}
 
 }
 
@@ -109,12 +113,14 @@ button {
   .signin-form-input {
     width: auto;
   }
+  h1 {
+  font-size: 25px;
+  text-align: center;
 }
-@media screen and (max-width: 400px) {
+}
+@media screen and (max-width: 480px) {
 h1 {
   font-size: 20px;
-
-
   text-align: center;
 }
 }
