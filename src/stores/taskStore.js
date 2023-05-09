@@ -7,19 +7,27 @@ export default defineStore('taskStore', {
   }),
   actions: {
     async _fetchAllTasks() {
-      const { data, error } = await supabase.from('tasks').select()
+      const { data, error } = await supabase
+      .from('tasks')
+      .select()
 
       if (error) throw error
       console.log(data)
       this.tasksList = data
     },
     async _addNewTask({ title, user_id }) {
-      const { data, error } = await supabase.from('tasks').insert({ title, user_id }).select()
+      const { data, error } = await supabase
+      .from('tasks').insert({ title, user_id })
+      .select()
       if (error) throw error
       this.tasksList.push(...data)
     },
     async _editTask({ title, id }) {
-      const { data, error } = await supabase.from('tasks').update({ title }).eq('id', id).select()
+      const { data, error } = await supabase
+      .from('tasks')
+      .update({ title })
+      .eq('id', id)
+      .select()
       if (error) throw error
       const [task] = data
       this.tasksList.forEach((todo) => {
@@ -49,25 +57,11 @@ export default defineStore('taskStore', {
       if (error) throw error
       this.tasksList = this.tasksList.filter((task) => task.id !== id)
     },
-    // async _fetchTasks() {
-    //   try {
-    //       const { data: tasks, error } = await supabase
-    //           .from('tasks')
-    //           .select()
-    //           .order('inserted_at', { ascending: false });
-    //       if (error) throw error;
-    //       this.tasksList = tasks;
-    //   } catch (err) {
-    //       console.error(err);
-    //   }
-    // }
-
-    async fetchTasks() {
-      const { data: tasks } = await supabase
-        .from('tasks')
-        .select('*')
-        .order('id', { ascending: false })
-      this.tasks = tasks
+    _removeAllTasks(){
+      this.tasksList = []
     }
+    
+
+
   }
 })
