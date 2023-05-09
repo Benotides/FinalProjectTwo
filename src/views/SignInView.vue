@@ -50,12 +50,13 @@ export default {
 
 <style scoped>
 @import url('../assets/fonts.css');
+
 h1 {
   font-family: 'Aniron', sans-serif;
   margin-top: -50%;
 }
 label {
-  color:bisque;
+  color:rgb(228, 165, 88);
   margin-bottom: 3%;
 }
 .signin-form {
@@ -74,6 +75,7 @@ label {
   border: 1px solid #ccc;
   font-size: 16px;
 }
+
 button {
   font-family: 'Aniron', sans-serif;
   background-color: darkslategrey;
@@ -81,7 +83,7 @@ button {
 
 .signin-form-button {
   background-color: darkslategrey;
-  color:bisque;
+  color:rgb(228, 165, 88);
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
@@ -91,6 +93,29 @@ button {
 }
 
 .signin-form-button:hover {
-  background-color: #005faa;
+  background-color: #8e9194;
+}
+
+/* Estilos para pantalla de tablet */
+@media screen and (max-width: 991px) {
+  .signin-form-input {
+    width: 250px;
+  }
+
+}
+
+/* Estilos para pantalla de móvil */
+@media screen and (max-width: 767px) {
+  .signin-form-input {
+    width: auto;
+  }
+}
+@media screen and (max-width: 400px) {
+h1 {
+  font-size: 20px;
+
+
+  text-align: center;
+}
 }
 </style>
