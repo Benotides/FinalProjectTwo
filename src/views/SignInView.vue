@@ -65,10 +65,11 @@ label {
   align-items: center;
   margin-top: 50px;
   font-family: 'Aniron', sans-serif;
+  height: auto;
 }
 
 .signin-form-input {
-  width: 300px;
+  width: auto;
   padding: 10px;
   margin-bottom: 20px;
   border-radius: 5px;
@@ -99,7 +100,7 @@ button {
 /* Estilos para pantalla de tablet */
 @media screen and (max-width: 991px) {
   .signin-form-input {
-    width: 250px;
+    width: auto;
   }
   h1 {
   font-size: 30px;

@@ -97,7 +97,6 @@ header {
 
   header .wrapper {
     display: flex;
-    /* place-items: flex-start; */
     flex-wrap: wrap;
   }
 
