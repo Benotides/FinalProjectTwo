@@ -127,7 +127,12 @@ input[type='text'] {
     font-size: 25px;
     text-align: center;
     font-family: 'Aniron', sans-serif;
-
+}
+label {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    color:rgb(199, 132, 51)
 }
 }
 </style>
