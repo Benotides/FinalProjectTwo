@@ -7,27 +7,19 @@ export default defineStore('taskStore', {
   }),
   actions: {
     async _fetchAllTasks() {
-      const { data, error } = await supabase
-      .from('tasks')
-      .select()
+      const { data, error } = await supabase.from('tasks').select()
 
       if (error) throw error
       console.log(data)
       this.tasksList = data
     },
     async _addNewTask({ title, user_id }) {
-      const { data, error } = await supabase
-      .from('tasks').insert({ title, user_id })
-      .select()
+      const { data, error } = await supabase.from('tasks').insert({ title, user_id }).select()
       if (error) throw error
       this.tasksList.push(...data)
     },
     async _editTask({ title, id }) {
-      const { data, error } = await supabase
-      .from('tasks')
-      .update({ title })
-      .eq('id', id)
-      .select()
+      const { data, error } = await supabase.from('tasks').update({ title }).eq('id', id).select()
       if (error) throw error
       const [task] = data
       this.tasksList.forEach((todo) => {
@@ -57,11 +49,8 @@ export default defineStore('taskStore', {
       if (error) throw error
       this.tasksList = this.tasksList.filter((task) => task.id !== id)
     },
-    _removeAllTasks(){
+    _removeAllTasks() {
       this.tasksList = []
     }
-    
-
-
   }
 })

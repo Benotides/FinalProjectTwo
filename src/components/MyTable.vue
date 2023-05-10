@@ -20,8 +20,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="todo in filteredTaskList" :key="todo.id">
-                </tr>
+          <tr v-for="todo in filteredTaskList" :key="todo.id"></tr>
 
           <tr class="tareasnuevas" v-for="todo in uncompletedTaskList" :key="todo.id">
             <td>{{ todo.title }}</td>
@@ -181,7 +180,6 @@ h1 {
   font-family: 'Aniron', sans-serif;
   font-size: 20px;
   margin-top: 3%;
-  
 }
 
 table {
@@ -219,7 +217,7 @@ tbody td {
 .tareasnuevas {
   font-size: 20px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  width:auto;
+  width: auto;
   height: auto;
 }
 thead th:first-child,
@@ -239,7 +237,6 @@ tbody td:last-child {
   flex-direction: row;
   align-items: space-around;
   width: auto;
- 
 }
 
 button {
@@ -276,8 +273,7 @@ input[type='text'] {
   border-radius: 4px;
   margin-right: 1rem;
   width: 40%;
-  margin-top:5%;
-
+  margin-top: 5%;
 }
 
 /* Responsive para dispositivos móviles */
@@ -293,25 +289,24 @@ input[type='text'] {
   .add {
     margin-left: 1%;
     width: auto;
-    
   }
-  .acciones{
-    font-size:8px;
+  .acciones {
+    font-size: 8px;
     width: auto;
   }
-  .añadir{
-    font-size:10px;
+  .añadir {
+    font-size: 10px;
   }
-.tableActions {
-  font-size: 10px;
-}
+  .tableActions {
+    font-size: 10px;
+  }
   .lista {
     flex-direction: column;
     align-items: center;
   }
 
   button {
-    font-size:8px;
+    font-size: 8px;
   }
   .tareasnuevas {
     font-size: 15px;
@@ -326,13 +321,13 @@ input[type='text'] {
     max-width: 100%;
   }
   .acciones {
-  display: flex;
-  flex-direction: column;
-  align-content: space-around;
-}
-.button {
-  font-size:7px;
-}
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+  }
+  .button {
+    font-size: 7px;
+  }
 }
 
 /* Responsive para tablets */
@@ -363,5 +358,4 @@ input[type='text'] {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   }
 }
-
 </style>

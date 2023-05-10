@@ -14,7 +14,7 @@ export default {
 
   methods: {
     ...mapActions(userStore, ['signOut']),
-    ...mapActions(taskStore,  ['_removeAllTasks']),
+    ...mapActions(taskStore, ['_removeAllTasks']),
     async _handleLogOut() {
       try {
         await this.signOut()
@@ -45,34 +45,29 @@ export default {
   margin-bottom: 8%;
   width: auto;
   height: auto;
-  
 }
 
 @media (max-width: 480px) {
   .signout {
-  margin-top: 1rem;
-  background-color: #a97f50;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-left: 65%;
-  margin-bottom: 8%;
-  width: auto;
-  font-size: 10px;
-}
+    margin-top: 1rem;
+    background-color: #a97f50;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 65%;
+    margin-bottom: 8%;
+    width: auto;
+    font-size: 10px;
+  }
 }
 
 @media (min-width: 481px) and (max-width: 1023px) {
-
   .signout {
- 
-  margin-left: 75%;
-  margin-bottom: 8%;
-  width: auto;
-
+    margin-left: 75%;
+    margin-bottom: 8%;
+    width: auto;
+  }
 }
-}
-
 </style>

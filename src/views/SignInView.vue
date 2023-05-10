@@ -56,7 +56,7 @@ h1 {
   margin-top: -50%;
 }
 label {
-  color:rgb(228, 165, 88);
+  color: rgb(228, 165, 88);
   margin-bottom: 3%;
 }
 .signin-form {
@@ -84,7 +84,7 @@ button {
 
 .signin-form-button {
   background-color: darkslategrey;
-  color:rgb(228, 165, 88);
+  color: rgb(228, 165, 88);
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
@@ -103,10 +103,9 @@ button {
     width: auto;
   }
   h1 {
-  font-size: 30px;
-  text-align: center;
-}
-
+    font-size: 30px;
+    text-align: center;
+  }
 }
 
 /* Estilos para pantalla de móvil */
@@ -115,15 +114,14 @@ button {
     width: auto;
   }
   h1 {
-  font-size: 25px;
-  text-align: center;
-}
+    font-size: 25px;
+    text-align: center;
+  }
 }
 @media screen and (max-width: 480px) {
-h1 {
-  font-size: 28px;
-  text-align: center;
-
-}
+  h1 {
+    font-size: 28px;
+    text-align: center;
+  }
 }
 </style>
