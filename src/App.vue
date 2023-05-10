@@ -4,7 +4,7 @@ export default {
   name: 'App',
   components: {
     NavBar
-  },
+  }
 }
 </script>
 
@@ -33,9 +33,7 @@ body {
   border-radius: 100%;
   display: block;
   margin: 0 auto 2rem;
-
 }
-
 
 .container {
   display: flex;
@@ -49,16 +47,12 @@ header {
   max-height: 100vh;
 }
 
-
-
 /* Estilos para pantalla de tablet */
 @media screen and (max-width: 991px) {
   .logo {
     width: 200px;
     height: 200px;
   }
-
-
 }
 
 /* Estilos para pantalla de móvil */
@@ -67,9 +61,6 @@ header {
     width: 150px;
     height: 150px;
   }
-
-  
-
 }
 
 @media screen and (max-width: 480px) {
@@ -78,9 +69,6 @@ header {
     height: 210px;
     margin-top: 5%;
   }
-
-  
-
 }
 
 /* Estilos para pantalla de PC */
@@ -99,7 +87,5 @@ header {
     display: flex;
     flex-wrap: wrap;
   }
-
-
 }
 </style>
