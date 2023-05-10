@@ -1,6 +1,6 @@
 <template>
-<div class="signup-container">
-    <h2 class="signup-form" h2>Accede a tu lista de tareas</h2>
+
+    <h2>Regístrate como nuevo usuario</h2>
     <form class="signup-form">
         <div class="box">
             <label for="email">Email:</label>
@@ -16,7 +16,7 @@
         </div>
         <button class="btn-signup" @click="handleSignUp" type="button">Register</button>
     </form>
-</div>
+
 </template>
 
 <script>
@@ -65,33 +65,21 @@ export default {
 <style scoped>
 @import url('../assets/fonts.css');
 
-.signup-container {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    background-color: #f2f2f2;
-    padding-top: 30px;
-    border-radius: 8%;
-}
-
 .signup-form {
-    background-color: #fff;
     border-radius: 10px;
     padding: 40px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 30px 40px rgba(83, 15, 15, 0.2);
     text-align: center;
     font-family: 'Aniron', sans-serif;
     margin-bottom: 40px;
 }
 
-.signup-form h2 {
-    margin-bottom: 30px;
+h2 {
+    margin-top: -10%;
     font-size: 2rem;
-}
+    text-align: center;
+    font-family: 'Aniron', sans-serif;
 
-.box {
-    margin-bottom: 20px;
 }
 
 .input-container {
@@ -102,9 +90,10 @@ export default {
 }
 
 label {
-    margin-bottom: 5px;
-    font-size: 1rem;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
     font-weight: bold;
+    color:rgb(199, 132, 51)
 }
 
 input[type='email'],
@@ -115,19 +104,30 @@ input[type='text'] {
     border-radius: 5px;
     border: 1px solid #ccc;
     font-size: 16px;
+    margin-top: 2%;
 }
 
 .btn-signup {
     font-family: 'Aniron', sans-serif;
     background-color: darkslategrey;
-    color: #fff;
+    color:rgb(199, 132, 51);
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 20px;
 }
 
 .btn-signup:hover {
-    background-color: #005faa;
+    background-color:#8e9194;
+}
+
+@media screen and (max-width: 480px) {
+    h2 {
+    margin-bottom: 30px;
+    font-size: 25px;
+    text-align: center;
+    font-family: 'Aniron', sans-serif;
+
+}
 }
 </style>

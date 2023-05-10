@@ -170,6 +170,7 @@ export default {
 
 .add {
   margin-left: 20%;
+  width: auto;
 }
 
 .lista {
@@ -291,11 +292,12 @@ input[type='text'] {
 
   .add {
     margin-left: 1%;
-    width: 50%;
+    width: auto;
     
   }
   .acciones{
-    font-size:10px;
+    font-size:8px;
+    width: auto;
   }
   .añadir{
     font-size:10px;
@@ -309,7 +311,6 @@ input[type='text'] {
   }
 
   button {
-    width: 100%;
     font-size:8px;
   }
   .tareasnuevas {
@@ -318,7 +319,7 @@ input[type='text'] {
   }
 
   .añadir {
-    width: 30%;
+    width: auto;
   }
 
   input[type='text'] {
@@ -351,14 +352,14 @@ input[type='text'] {
   }
 
   button {
-    width: 100%;
+    width: auto;
   }
 
   .añadir {
-    width: 20%;
+    width: auto;
   }
   .tareasnuevas {
-    font-size: 25px;
+    font-size: 18px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   }
 }
