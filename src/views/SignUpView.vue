@@ -72,11 +72,12 @@ export default {
   box-shadow: 0 30px 40px rgba(83, 15, 15, 0.2);
   text-align: center;
   font-family: 'Aniron', sans-serif;
-  margin-bottom: 40px;
+  margin-bottom: 9%;
 }
 
 h2 {
   margin-top: 0%;
+  margin-bottom: 5%;
   font-size: 2rem;
   text-align: center;
   font-family: 'Aniron', sans-serif;
@@ -87,6 +88,7 @@ h2 {
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: 20px;
+ 
 }
 
 label {
