@@ -41,7 +41,7 @@ export default {
   padding: 0.5rem 1rem;
   border-radius: 8px;
   cursor: pointer;
-  margin-left: 80%;
+  margin-left: 60%;
   margin-bottom: 8%;
   width: auto;
   height: auto;
@@ -68,7 +68,7 @@ button:hover {
 
 @media (min-width: 481px) and (max-width: 1023px) {
   .signout {
-    margin-left: 75%;
+    margin-left: 60%;
     margin-bottom: 8%;
     width: auto;
   }
