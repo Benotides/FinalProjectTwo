@@ -76,7 +76,7 @@ export default {
 }
 
 h2 {
-  margin-top: -10%;
+  margin-top: 0%;
   font-size: 2rem;
   text-align: center;
   font-family: 'Aniron', sans-serif;

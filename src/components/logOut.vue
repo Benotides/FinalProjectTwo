@@ -46,6 +46,9 @@ export default {
   width: auto;
   height: auto;
 }
+button:hover {
+  background-color: rgb(73, 43, 9);
+}
 
 @media (max-width: 480px) {
   .signout {
