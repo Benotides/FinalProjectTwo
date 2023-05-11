@@ -27,7 +27,7 @@
             <td>&#x274C;</td>
 
             <td class="acciones">
-              <button @click="_handleCompleteTask(todo)">Tarea realizada!</button>
+              <button @click="_handleCompleteTask(todo)">Realizada!</button>
               <button @click="_handleEditTask(todo)">Modificar</button>
               <button @click="_handleEraseTask(todo)">Borrar</button>
             </td>
@@ -46,7 +46,7 @@
           </thead>
           <tbody>
             <tr class="tareasnuevas" v-for="todo in completedTaskList" :key="todo.id">
-              <td>{{ todo.title }}</td>
+              <td class="tareaadd">{{ todo.title }}</td>
               <td>
                 <span style="color: green; font-size: 1.2em">&#10004;</span>
               </td>
@@ -182,15 +182,19 @@ h1 {
   margin-top: 3%;
 }
 
+td {
+  background-color: rgba(189, 185, 176, 0.589);
+  color: rgb(107, 67, 18);
+}
+td:hover {
+  background-color: rgb(228, 190, 143);
+}
 table {
-  border-collapse: collapse;
   margin-top: 1%;
   margin-bottom: 4%;
   width: 100%;
   height: auto;
-  background-color: #f7f7f7;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
 .tableActions {
@@ -205,14 +209,30 @@ thead tr {
   font-weight: bold;
   width: auto;
 }
-
-thead th,
 tbody td {
   border: 1px solid #ccc;
-  padding: 1rem;
+  /* padding: 0.1rem; */
   text-align: center;
   height: auto;
   width: auto;
+  border-radius: 10px;
+}
+
+tbody tr {
+  flex-direction: row;
+}
+.tareaadd {
+  white-space: normal;
+  word-break: break-word;
+}
+
+thead th {
+  border: 1px solid #ccc;
+  padding: 0.6rem;
+  text-align: center;
+  height: auto;
+  width: auto;
+  border-radius: 10px;
 }
 .tareasnuevas {
   font-size: 20px;
@@ -252,6 +272,9 @@ button {
   align-self: center;
   font-family: 'Aniron', sans-serif;
   font-size: 12px;
+}
+button:hover {
+  background-color: rgb(73, 43, 9);
 }
 
 .añadir {
