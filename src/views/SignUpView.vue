@@ -7,17 +7,21 @@
     </div>
     <div>
       <label for="password">Password:</label>
-      <input class="input-container" type="password" id="password" v-model="password" required />
+      <input class="input-container" 
+      type="{{ showPassword ? 'text' : 'password' }}"
+      id="password" v-model="password" required />
+      <input  type="checkbox" v-model="showPassword"> Mostrar
     </div>
     <div>
       <label for="confirm-password">Confirm Password:</label>
       <input
         class="input-container"
-        type="password"
+        type="{{ showConfirmPassword ? 'text' : 'password' }}"
         id="confirm-password"
         v-model="confirmPassword"
         required
       />
+      <input class="show" type="checkbox" v-model="showConfirmPassword" > Mostrar 
     </div>
     <button class="btn-signup" @click="handleSignUp" type="button">Register</button>
   </form>
@@ -33,7 +37,9 @@ export default {
     return {
       email: '',
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
+      showPassword: false,
+      showConfirmPassword: false,
     }
   },
   computed: {
@@ -76,7 +82,7 @@ export default {
 }
 
 h2 {
-  margin-top: -10%;
+  margin-top: 6%;
   font-size: 2rem;
   text-align: center;
   font-family: 'Aniron', sans-serif;
@@ -87,6 +93,12 @@ h2 {
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: 20px;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  margin-top: 2%;
 }
 
 label {
@@ -115,6 +127,7 @@ input[type='text'] {
   border-radius: 5px;
   padding: 10px 20px;
   font-size: 20px;
+  margin-top: 6%;
 }
 
 .btn-signup:hover {
