@@ -194,6 +194,7 @@ h1 {
     font-family: 'Aniron', sans-serif;
     font-size: 20px;
     margin-top: 3%;
+    color: rgb(128, 86, 36);
 }
 .title {
   width: 350px;
