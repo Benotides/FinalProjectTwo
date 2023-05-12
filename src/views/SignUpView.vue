@@ -88,7 +88,6 @@ h2 {
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: 20px;
- 
 }
 
 label {
