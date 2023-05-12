@@ -65,7 +65,7 @@ nav {
     font-family: 'Aniron', sans-serif;
     color: bisque;
     text-decoration: none;
-    margin-left: 5px;
+    margin-left:6%;
     font-size: 15px;
   }
 }
