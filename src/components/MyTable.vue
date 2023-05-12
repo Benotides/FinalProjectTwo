@@ -3,7 +3,7 @@
     <div>
       <div v-if="!updatingTask">
         <input class="add" type="text" v-model="newTaskTitle" />
-        <button @click="_handleaddNewTask">Añadir tarea</button>
+        <button class="añadir" @click="_handleaddNewTask">Añadir tarea</button>
       </div>
       <div v-else>
         <input type="text" v-model="updateTaskTitle" />
@@ -178,10 +178,13 @@ export default {
   display: flex;
   justify-content: center;
 }
-.add {
-  margin-left: 20%;
+input.add {
+  align-self:center ;
   width: auto;
+  height: auto;
+  margin-left: 10%;
 }
+
 
 h1 {
   font-family: 'Aniron', sans-serif;
@@ -189,9 +192,7 @@ h1 {
   margin-top: 3%;
   color: rgb(128, 86, 36);
 }
-.title {
-  width: 350px;
-}
+
 
 td {
   background-color: rgba(189, 185, 176, 0.589);
@@ -231,7 +232,7 @@ tbody tr {
 .tareaadd {
   white-space: normal;
 
-  width: 100%;
+  width: 400px;
 }
 
 thead th {
@@ -339,9 +340,7 @@ input[type='text'] {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   }
 
-  .añadir {
-    width: auto;
-  }
+ 
 
   input[type='text'] {
     max-width: 100%;
@@ -362,6 +361,9 @@ input[type='text'] {
   }
   .table {
     margin-left: 5%;
+  }
+  .tareaadd{
+    width: auto;
   }
 }
 
