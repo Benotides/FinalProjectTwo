@@ -303,7 +303,7 @@ button {
     width: auto;
     align-self: center;
     font-family: 'Aniron', sans-serif;
-    font-size: 14px;
+    font-size: 0.8rem;
 }
 
 button:hover {
@@ -323,11 +323,11 @@ input[type='text'] {
 @media (max-width: 480px) {
     .box {
         margin-left: 5%;
-        margin-right: 1%;
+        margin-right: 3%;
     }
 
     h1 {
-        font-size: 0.8rem;
+        font-size: 0.7rem;
     }
 
     .add {
@@ -377,8 +377,8 @@ input[type='text'] {
         align-content: space-around;
     }
 
-    .button {
-        font-size: 0.8rem;
+    button {
+        font-size: 0.5rem;
     }
 
     td.acciones {
